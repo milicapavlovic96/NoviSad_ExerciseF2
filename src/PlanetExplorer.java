@@ -1,21 +1,49 @@
 
+
+
+
+
 // Before you commit and push write your student ID and finish time here.
-// Finish time:
-// Student ID:
+// Finish time:20:45
+// Student ID:IT-38/2015
 
 public class PlanetExplorer {
+	
+	int pos_x=0;
+	int pos_y=0;
+	
+	String direction="N";
+	
 	public PlanetExplorer(int x, int y, String obstacles){
-	/*	x and y represent the size of the grid.
-	 *  Obstacles is a String formatted as follows: "(obs1_x,obs1_y)(obs2_x,obs2_y)...(obsN_x,obsN_y)" with no white spaces. 
-	 *  
-		Example use: For a 100x100 grid with two obstacles at coordinates (5,5) and (7,8)
-		PlanetExplorer explorer = new PlanetExplorer(100,100,"(5,5)(7,8)")  
-		 
-	 */
+		pos_x=x;
+		pos_y=y;
+		obstacles=obstacles;
+		
 	}
 	
-	public String executeCommand(String command){
-		
+	public String executeCommand(String command) {//throws PlanetExplorerException{
+		char[]com=command.toCharArray();
+		for(int i=0;i<com.length;i++){
+		if(com[i]=='f'){
+			direction="N";
+				pos_y++;
+			}
+		else if(com[i]=='b'){
+			direction="S";
+			pos_y--;
+		}
+		else if(com[i]=='l'){
+			direction="W";
+			pos_x--;
+		}
+		else if(com[i]=='d'){
+			direction="E";
+			pos_x++;
+		}
+		else{
+			//throw new PlanetExplorerException();
+		}
+		}
 		/* The command string is composed of "f" (forward), "b" (backward), "l" (left) and "r" (right)
 		 * Example: 
 		 * The explorer is on a 100x100 grid at location (0, 0) and facing NORTH. 
@@ -26,6 +54,10 @@ public class PlanetExplorer {
 		 * The return string should also contain a list of coordinates of the encountered obstacles. No white spaces.
 		 */
 		
-		return null;
+		return toString();
+	}
+	
+	public String toString(){
+		return "("+pos_x+","+pos_y+","+direction+")";
 	}
 }
